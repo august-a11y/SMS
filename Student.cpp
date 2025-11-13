@@ -1,5 +1,6 @@
 #include "Student.h"
 #include "Schedule.h" 
+#include "Grade.h"
 #include <iostream>
 
 using namespace std;
@@ -12,27 +13,15 @@ void Student::RegisterCourses() {
     cout << "(Chuc nang chua duoc implement)" << endl;
 }
 
-vector<Schedule> Student::ViewSchedule() {
-    // Logic thực tế:
-    // 1. Lấy danh sách các SchoolClass mà sinh viên này đã đăng ký
-    // 2. Lặp qua các class đó, lấy Schedule của chúng
-    // 3. Trả về một vector chứa các Schedule
-    cout << "-> " << this->getID() << " dang thuc hien chuc nang [Xem thoi khoa bieu]..." << endl;
-    cout << "(Chuc nang chua duoc implement)" << endl;
-    
-    vector<Schedule> mySchedule;
-    // ... them logic o day
-    return mySchedule;
+void Student::ViewSchedule() {
+	vector<Schedule> mySchedule = this->schedules;
+    for(Schedule s : mySchedule) {
+        cout << "Class ID: " << s.classID << ", Day: " << s.dayOfWeek 
+             << ", Time: " << s.startTime << " - " << s.endTime 
+             << ", Room: " << s.room << endl;
+	}
 }
 
-vector<Grade> Student::ViewGrades() {
-    // Logic thực tế:
-    // 1. Lấy danh sách các Grade từ vector<Grade*>
-    // 2. Trả về một vector<Grade> (không phải con trỏ)
-    cout << "-> " << this->getID() << " dang thuc hien chuc nang [Xem diem]..." << endl;
-    cout << "(Chuc nang chua duoc implement)" << endl;
-    
-    vector<Grade> myGrades;
-    // ... them logic o day
-    return myGrades;
+void Student::ViewGrades() {
+	
 }

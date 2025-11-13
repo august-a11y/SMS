@@ -3,6 +3,9 @@
 #include "Lecturer.h"   
 #include "Course.h"     
 #include <algorithm>    
+#include <iostream>
+
+using namespace std;
 
 bool CourseClass::AddStudent(Student* student) {
     if (student == nullptr) return false;
@@ -20,26 +23,11 @@ bool CourseClass::AddStudent(Student* student) {
 
 
 
-string CourseClass::getCourseCode() const {
-    if (course != nullptr) {
-        return course->courseCode;
-    }
-    return ""; // Hoặc "N/A"
-}
+vector<Student*> CourseClass::GetStudentList() {
+	int i = 1;
+    for(Student* s : students) {
+        cout << i << ": " << s->getFullName() << endl;
+		i++;
+	}
 
-string CourseClass::getLecturerID() const {
-    if (lecturer != nullptr) {
-        return lecturer->getID();
-    }
-    return ""; // Hoặc "N/A"
-}
-
-vector<string> CourseClass::getStudentIDs() const {
-    vector<string> ids;
-    for (Student* s : students) {
-        if (s != nullptr) {
-            ids.push_back(s->getID());
-        }
-    }
-    return ids;
 }

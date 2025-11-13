@@ -20,8 +20,10 @@ private:
     float gpa;
     Address address;
     int enrollmentYear;
+	string fullName;
     string academicStatus;
-    vector<Grade*> grades; 
+	vector<Schedule> schedules;
+    vector<Grade> grades; 
     
 public:
     
@@ -34,6 +36,8 @@ public:
     Address getAddress();
     string getFaculty();
     string getGender();
+	string getFullName();
+	void setFullName(const string& name);
     void setFaculty(const string& faculty);
     void setGender(const string& gender);
     void setAddress(const Address& addr);
@@ -43,6 +47,6 @@ public:
     void setAcademicStatus(const string& status);
     void setEnrollmentYear(int year);
     void RegisterCourses();
-    vector<Schedule> ViewSchedule();
-    vector<Grade> ViewGrades();
+    void ViewSchedule();
+    void ViewGrades();
 };

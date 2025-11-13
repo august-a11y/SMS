@@ -16,6 +16,7 @@ private:
     string gender;
     string dateOfBirth;
     Address address; 
+	vector<Schedule> schedules;
   
     
 public:
