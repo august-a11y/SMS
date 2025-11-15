@@ -18,7 +18,7 @@ class Menu:
         print("=" * 60)
     
     def get_choice(self) -> Optional[str]:
-        choice = input("\nLựa chọn: ").strip()
+        choice = input("\nChoice: ").strip()
         return choice
     
     def run(self):
@@ -38,16 +38,16 @@ class Menu:
                     if result is False:
                         break
                 except Exception as e:
-                    print(f"\n✗ Lỗi: {e}")
-                    input("\nNhấn Enter để tiếp tục...")
+                    print(f"\n✗ Error: {e}")
+                    input("\nPress Enter to continue...")
             else:
-                print("\n✗ Lựa chọn không hợp lệ!")
-                input("Nhấn Enter để tiếp tục...")
+                print("\n✗ Error: Invalid choice. Please try again.")
+                input("Press Enter to continue...")
 
 
 class AdminMenu(Menu):
     def __init__(self):
-        super().__init__("MENU QUẢN TRỊ VIÊN")
+        super().__init__("MENU ADMIN")
         self.setup_options()
     
     def setup_options(self):
@@ -56,7 +56,7 @@ class AdminMenu(Menu):
 
 class StudentMenu(Menu):
     def __init__(self):
-        super().__init__("MENU SINH VIÊN")
+        super().__init__("MENU STUDENT")
         self.setup_options()
     
     def setup_options(self):
@@ -65,7 +65,7 @@ class StudentMenu(Menu):
 
 class LecturerMenu(Menu):
     def __init__(self):
-        super().__init__("MENU GIẢNG VIÊN")
+        super().__init__("MENU LECTURER")
         self.setup_options()
     
     def setup_options(self):

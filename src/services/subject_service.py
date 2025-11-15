@@ -11,7 +11,7 @@ class SubjectService:
         if hasattr(self._subject_repository, 'find_by_code'):
             existing = self._subject_repository.find_by_code(code)
             if existing:
-                raise ValueError(f"Lỗi: Mã môn học '{code}' đã tồn tại.")
+                raise ValueError(f"Error: Subject code '{code}' already exists.")
         
         subject = Subject(id=None, code=code, name=name, credits=credits)
         return self._subject_repository.create(subject)
@@ -33,4 +33,3 @@ class SubjectService:
         if hasattr(self._subject_repository, 'find_by_code'):
             return self._subject_repository.find_by_code(code)
         return None
-

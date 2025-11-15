@@ -1,11 +1,13 @@
 from typing import List, Optional
 from src.models.class_model import Class
+from src.models.user import User
 from src.interfaces.repository_interface import IRepository
 
 
 class ClassService:
-    def __init__(self, class_repository: IRepository[Class]):
+    def __init__(self, class_repository: IRepository[Class], user_repository: IRepository[User] ):
         self._class_repository = class_repository
+        self._user_repository = user_repository
     
     def create_class(
         self,
@@ -19,12 +21,20 @@ class ClassService:
         if hasattr(self._class_repository, 'find_by_code'):
             existing = self._class_repository.find_by_code(code)
             if existing:
-                raise ValueError(f"Lỗi: Mã lớp học '{code}' đã tồn tại.")
+                raise ValueError(f"Error: Class code '{code}' already exists.")
         
         if hasattr(self._class_repository, 'find_conflicting_schedule'):
             conflicting = self._class_repository.find_conflicting_schedule(room, schedule)
             if conflicting:
-                raise ValueError(f"Lỗi: Trùng lịch phòng '{room}'.")
+                raise ValueError(f"Error: Schedule conflict for room '{room}'.")
+        if hasattr(self._user_repository, 'find_by_username') and hasattr(self._user_repository, 'find_by_role')  :
+            conflicting = self._user_repository.find_by_username(lecturer_username)
+            
+            
+            if not conflicting and conflicting.role.value != 'lecturer':
+                    raise ValueError(f"Error: The lecturer '{lecturer_username}' does not exist.")
+            
+
         
         class_obj = Class(
             id=None,
@@ -54,7 +64,7 @@ class ClassService:
                     exclude_class_id=class_obj.id
                 )
                 if conflicting:
-                    raise ValueError(f"Lỗi: Phòng học '{room}' đã bận.")
+                    raise ValueError(f"Error: Room '{room}' is already occupied.")
             class_obj.room = room
         
         if schedule is not None:
@@ -65,7 +75,7 @@ class ClassService:
                     exclude_class_id=class_obj.id
                 )
                 if conflicting:
-                    raise ValueError(f"Lỗi: Trùng lịch phòng '{class_obj.room}'.")
+                    raise ValueError(f"Error: Schedule conflict for room '{class_obj.room}'.")
             class_obj.schedule = schedule
         
         return self._class_repository.update(class_obj)
@@ -77,4 +87,4 @@ class ClassService:
         if hasattr(self._class_repository, 'find_by_code'):
             return self._class_repository.find_by_code(code)
         return None
-
+    

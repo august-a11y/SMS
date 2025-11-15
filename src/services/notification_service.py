@@ -1,6 +1,6 @@
 """
-Notification Service - Open/Closed Principle và Liskov Substitution Principle
-Có thể mở rộng thêm loại notification mới mà không cần sửa code cũ
+Notification Service - Open/Closed Principle and Liskov Substitution Principle
+Can be extended with new notification types without modifying old code
 """
 from abc import ABC
 from src.interfaces.notification_interface import INotification
@@ -9,7 +9,7 @@ from src.interfaces.notification_interface import INotification
 class NotificationService(INotification, ABC):
     """
     Base notification service
-    Open/Closed Principle - mở để mở rộng, đóng để sửa đổi
+    Open/Closed Principle - open for extension, closed for modification
     """
     
     def send(self, recipient: str, message: str) -> bool:
@@ -20,7 +20,7 @@ class NotificationService(INotification, ABC):
 class EmailNotification(NotificationService):
     """
     Email notification implementation
-    Liskov Substitution Principle - có thể thay thế NotificationService
+    Liskov Substitution Principle - can substitute NotificationService
     """
     
     def send(self, recipient: str, message: str) -> bool:
@@ -34,7 +34,7 @@ class EmailNotification(NotificationService):
 class SMSNotification(NotificationService):
     """
     SMS notification implementation
-    Liskov Substitution Principle - có thể thay thế NotificationService
+    Liskov Substitution Principle - can substitute NotificationService
     """
     
     def send(self, recipient: str, message: str) -> bool:
@@ -43,4 +43,3 @@ class SMSNotification(NotificationService):
         print(f"[SMS] Message: {message}")
         print(f"[SMS] ✓ SMS sent successfully")
         return True
-

@@ -11,7 +11,7 @@ class LecturerService:
         if hasattr(self._user_repository, 'find_by_username'):
             existing = self._user_repository.find_by_username(username)
             if existing:
-                raise ValueError(f"Lỗi: Tên đăng nhập '{username}' đã tồn tại.")
+                raise ValueError(f"Error: Username '{username}' already exists.")
         
         lecturer = Lecturer(
             id=None,
@@ -35,4 +35,3 @@ class LecturerService:
     
     def delete_lecturer(self, lecturer_id: int) -> bool:
         return self._user_repository.delete(lecturer_id)
-

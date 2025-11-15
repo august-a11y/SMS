@@ -20,7 +20,7 @@ class StudentService:
         if hasattr(self._user_repository, 'find_by_username'):
             existing = self._user_repository.find_by_username(username)
             if existing:
-                raise ValueError(f"Lỗi: Tên đăng nhập '{username}' đã tồn tại.")
+                raise ValueError(f"Error: Username '{username}' already exists.")
         
         student = Student(
             id=None,
@@ -55,13 +55,13 @@ class StudentService:
                     break
         
         if not class_obj:
-            raise ValueError(f"Lớp học '{class_code}' không tồn tại.")
+            raise ValueError(f"Class '{class_code}' does not exist.")
         
         if class_obj.is_full:
-            raise ValueError(f"Lỗi: Không thể đăng ký. Lớp '{class_code}' đã đầy.")
+            raise ValueError(f"Error: Cannot register. Class '{class_code}' is full.")
         
         if student_username in class_obj.enrolled_students:
-            raise ValueError(f"Sinh viên đã đăng ký lớp '{class_code}'.")
+            raise ValueError(f"Student is already registered for class '{class_code}'.")
         
         class_obj.enrolled_students.append(student_username)
         self._class_repository.update(class_obj)
@@ -84,4 +84,3 @@ class StudentService:
         if hasattr(self._grade_repository, 'find_by_student'):
             return self._grade_repository.find_by_student(student_username)
         return []
-

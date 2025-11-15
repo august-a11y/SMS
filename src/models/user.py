@@ -24,7 +24,7 @@ class User:
 
 @dataclass
 class Student(User):
-    status: str = "Đang học"
+    status: str = "Studying"
     registered_classes: list[str] = None
     
     def __post_init__(self):

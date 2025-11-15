@@ -1,3 +1,5 @@
+
+
 from src.models.user import Admin, Student, Lecturer, UserRole
 from src.models.subject import Subject
 from src.models.class_model import Class
@@ -35,7 +37,7 @@ def initialize_data(
         password="123456",
         role=UserRole.STUDENT,
         user_id="051111",
-        name="Nguyễn Văn A"
+        name="Nguyen Van A" 
     )
     user_repo.create(student1)
     
@@ -46,23 +48,23 @@ def initialize_data(
         role=UserRole.LECTURER,
         user_id="051211",
         name="Prof. Alan",
-        department="Khoa học Máy tính"
+        department="Computer Science" 
     )
     user_repo.create(lecturer1)
     
-    subject1 = Subject(id=None, code="CS101", name="Nhập môn Lập trình", credits=3)
+    subject1 = Subject(id=None, code="CS101", name="Introduction to Programming", credits=3) 
     subject_repo.create(subject1)
     
-    subject2 = Subject(id=None, code="CS102", name="Cấu trúc Dữ liệu", credits=3)
+    subject2 = Subject(id=None, code="CS102", name="Data Structures", credits=3) 
     subject_repo.create(subject2)
     
     class1 = Class(
         id=None,
         code="CL1001",
         subject_code="CS101",
-        lecturer_username="lecturer01",
+        lecturer_username="Prof. Alan",
         room="B101",
-        schedule="T2 7-9",
+        schedule="Mon 7-9",
         max_students=50
     )
     class_repo.create(class1)
@@ -71,9 +73,9 @@ def initialize_data(
         id=None,
         code="CL1002",
         subject_code="CS101",
-        lecturer_username="lecturer01",
+        lecturer_username="Prof. Alan",
         room="B102",
-        schedule="T3 9-11",
+        schedule="Tue 9-11", 
         max_students=50
     )
     class_repo.create(class2)
@@ -81,7 +83,7 @@ def initialize_data(
 
 def main():
     print("=" * 60)
-    print("HỆ THỐNG QUẢN LÝ HỌC TẬP".center(60))
+    print("ACADEMIC MANAGEMENT SYSTEM".center(60)) 
     print("=" * 60)
     
     user_repository = UserRepository()
@@ -95,7 +97,7 @@ def main():
     student_service = StudentService(user_repository, class_repository, grade_repository)
     lecturer_service = LecturerService(user_repository)
     subject_service = SubjectService(subject_repository)
-    class_service = ClassService(class_repository)
+    class_service = ClassService(class_repository, user_repository)
     grade_service = GradeService(grade_repository)
     
     controller = AppController(
@@ -110,9 +112,9 @@ def main():
     try:
         controller.run()
     except KeyboardInterrupt:
-        print("\n\nCảm ơn bạn đã sử dụng hệ thống!")
+        print("\n\nThank you for using the system!") 
     except Exception as e:
-        print(f"\n✗ Lỗi: {e}")
+        print(f"\n✗ Error: {e}") 
 
 
 if __name__ == "__main__":

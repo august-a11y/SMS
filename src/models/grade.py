@@ -20,5 +20,5 @@ class Grade:
         mid = self.midterm_score if self.midterm_score is not None else "N/A"
         final = self.final_score if self.final_score is not None else "N/A"
         total = self.total_score if self.total_score is not None else "N/A"
-        return f"Grade(student='{self.student_username}', class='{self.class_code}', Giữa kỳ: {mid}, Cuối kỳ: {final}, Tổng: {total})"
+        return f"Grade(student='{self.student_username}', class='{self.class_code}', midterm_score: {mid}, final_score: {final}, Total: {total})"
 
