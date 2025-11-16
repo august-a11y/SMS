@@ -29,10 +29,11 @@ class ClassService:
                 raise ValueError(f"Error: Schedule conflict for room '{room}'.")
         if hasattr(self._user_repository, 'find_by_username') and hasattr(self._user_repository, 'find_by_role')  :
             conflicting = self._user_repository.find_by_username(lecturer_username)
+            if not conflicting:
+                raise ValueError(f"Error: The lecturer '{lecturer_username}' does not exist.")
             
-            
-            if not conflicting and conflicting.role.value != 'lecturer':
-                    raise ValueError(f"Error: The lecturer '{lecturer_username}' does not exist.")
+            if conflicting.role.value != 'lecturer':
+                    raise ValueError(f"Error: The '{lecturer_username}' is not the lecturer")
             
 
         
@@ -64,7 +65,7 @@ class ClassService:
                     exclude_class_id=class_obj.id
                 )
                 if conflicting:
-                    raise ValueError(f"Error: Room '{room}' is already occupied.")
+                    raise ValueError(f"Error: Room '{room}' schedule conflict")
             class_obj.room = room
         
         if schedule is not None:
