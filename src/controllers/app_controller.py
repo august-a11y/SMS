@@ -612,6 +612,7 @@ class AppController:
         except ValueError as e:
             print(f"\n✗ {e}")
         
+
         input("\nPress Enter to continue...")
     
     def _edit_class(self):
