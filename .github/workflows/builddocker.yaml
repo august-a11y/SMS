@@ -36,4 +36,4 @@ jobs:
 
           push: true
 
-          tags: vyle1008/SMS:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/sms:latest
