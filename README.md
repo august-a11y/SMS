@@ -76,13 +76,7 @@ python main.py
 # Đảm bảo bạn đang ở thư mục SMS (thư mục chứa Dockerfile)
 cd SMS
 
-# Sử dụng Docker Compose (Khuyến nghị)
-docker-compose up --build
-
-# Hoặc sử dụng Docker trực tiếp
-docker build -t sms-app .
-docker run -it --rm sms-app
-```
+docker run -it vyle1008/sms:latest
 
 **Giải thích lỗi thường gặp:**
 - Nếu bạn thấy lỗi `failed to read dockerfile: open Dockerfile: no such file or directory`, có nghĩa là bạn đang chạy lệnh từ sai thư mục
